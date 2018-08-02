@@ -219,7 +219,18 @@ waffles.makeSound();
 console.log('Is princess a cat?', cat.isPrototypeOf(princess));
 
 
+// Other examples of .call() and .apply()
 
+foo(x,y); 
+// the above is the SAME as:
+foo.call(window, x, y);
+// the above is the same as:
+foo.apply(window, [x, y]);
 
+bar.foo(x, y);
+// the above is the SAME as:
+foo.call(bar, x, y);
+// this above is the same as:
+foo.apply(bar, [x, y]);
 
 
