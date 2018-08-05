@@ -167,6 +167,7 @@ console.log(result);
 
 // Example using total function with zero parameters & using .apply() method:
 function total(){
+    // 'this' keyword is just a CONTEXT; the value will depend on where it's directed.
     console.log(this);
 // set variable counter to 0.
     let counter = 0;
@@ -235,7 +236,7 @@ function printName(options){
         firstName: 'Rena',
         lastName: 'Tan'
     };
-// Using Object.assing(), passing two parameters
+// Using Object.assign(), passing two parameters
 // if there is a property inside options, then it will over-ride
 // the same value in defaults:
     options = Object.assign(defaults, options);
