@@ -9,6 +9,16 @@
 // 'This' represents the current object/'calling object'
 
 
+// What does 'this' represent? See examples:
+// 1) Default binding, example: foo(): | 'this' will refer to global object or Window.
+// 2) Method on an Object, example: bar.foo() | 'this' will be the Object, which in this case is 'bar'.
+// 3) call/bind/apply, example: foo.call(thisObj, p1, p2...); | 'this' will be the Object, which is the 1st parameter.
+// 4) new binding, example:  new Foo(); | 'this' will be the empty object{}
+
+
+
+
+
 // Other examples of .call() and .apply()
 
 foo(x,y); 
@@ -196,6 +206,8 @@ function logAll(...args) {for (let i = 0; i < args.length; i++) {
 logAll('Rena', 22, false, 'Adam');
 
 
+// Object.getPrototypeOf() : this is the correct way to get the prototype
+
 
 
 // Example using Object.assign() method: To combine or merge two JS objects together
@@ -207,17 +219,22 @@ const course = {
 const grade = {
     score: 92
 };
-// the last object is the value if there are multiple properties of same name?
-// Can add multiple objects to create a combined or merged object.
+// Any time you have key/value pairs, the existing value would be over-ridden with new information.
+// 'course' is the TARGET, this 1st parameter
+// 'grade' is the SOURCE, this is 2nd parameter.  
+// Potential of lots of sources, but only one Target.
 const finalResult = Object.assign(course, grade, {
+    // Can add multiple objects to create a combined or merged object.
+    // Adds 'teacher' key/value pair to the object.
     teacher: 'Mrs. Waterhouse'
 });
 console.log(finalResult);
 
 
 
+
 var string1 = '';
-var object1 = {a: 1, b: 2, c:3}
+var object1 = {a: 1, b: 2, c:3};
 // looping through every enumberable property in object:
 for (var property1 in objhect1){
     // get the value in object 1 and add to string1.
@@ -239,9 +256,12 @@ function printName(options){
 // Using Object.assign(), passing two parameters
 // if there is a property inside options, then it will over-ride
 // the same value in defaults:
+// 'defaults' is the TARGET, this 1st parameter
+// 'options' is the SOURCE, this is 2nd parameter.  
+// Potential of lots of sources, but only one Target.
     options = Object.assign(defaults, options);
 
-    console.log(`${options.firstName} ${lastName}`);
+    console.log(`${options.firstName} ${options.lastName}`);
 }
 // invoking printName function and passing firstName object
 // as the 'options' parameter
@@ -250,13 +270,15 @@ printName({
 });
 
 
+
 // Examples of Object.create() method: it creates a new object
-// with prototype set to a certain object.
+// with prototype set to an existing object.
+
 
 // created an object literal with a function
 const cat = {
     makeSound: function(){
-// 'this' refers to cat and is set to 'sound'
+// 'this' is just CONTEXT (depends how function is called) and is set to 'sound'
         console.log(this.sound);
     }
 };
@@ -268,14 +290,43 @@ const princess = Object.create(cat)
 // refers to the 'makeSound' function
     princess.makeSound();
 
-const waffles = Object.create(cat)
+const waffles = Object.creat                
 // assign the 'sound'
-waffles.sound = 'Meoouuuuufffff'
+    waffles.sound = 'Meoouuuuufffff'
 // refers to the 'makeSound' function
-waffles.makeSound();
+    waffles.makeSound();
 
+    // Determine if 'princess' has cat as its' prototype. Same for waffles!
 console.log('Is princess a cat?', cat.isPrototypeOf(princess));
 
+// the prototype of cat === waffles | true
+// Object.prototype
+Object.getPrototypeOf(waffles) === Object.prototype;
 
 
+// NOTES:
+// A loop is used to repeat a block of code. They have 3 items: start, end & increment.
+// A function is to name a block code.
+// A variable is to store a value.
 
+
+let i = 1;
+while (i < 11){
+    console.log(i);
+    i++;
+}
+
+
+// Do / While examples: It runs the code and THEN checks at the end.
+let i = 0;
+do {
+    console.log(i);
+    i++
+} while ( i < 12);
+
+// It runs the code and THEN checks at the end.
+let i = 100; 
+do {
+    console.log(i);
+    i++
+} while ( i < 12);
